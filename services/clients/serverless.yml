@@ -1,0 +1,128 @@
+# NOTE: update this with your service name
+service: rfx-webapp-cp-api-clients
+
+# Use the serverless-webpack plugin to transpile ES6
+plugins:
+  - serverless-webpack
+  - serverless-offline
+  - serverless-domain-manager
+
+# serverless-webpack configuration
+# Enable auto-packing of external modules
+custom:
+  webpack:
+    webpackConfig: ./webpack.config.js
+    includeModules: true
+  secrets: ${file(secrets.json)}
+  customDomain:
+    domainName: 'webcp-api.remitfx.io' # Change this to your domain.
+    basePath: 'clients' # This will be prefixed to all routes
+    stage: ${self:provider.stage}
+    createRoute53Record: true
+
+provider:
+  name: aws
+  runtime: nodejs8.10
+  stage: dev
+  region: ap-southeast-1
+  profile: ctin
+  # To load environment variables externally
+  # rename env.example to env.yml and uncomment
+  # the following line. Also, make sure to not
+  # commit your env.yml.
+  #
+  #environment: ${file(env.yml):${self:provider.stage}}
+  environment:
+    NODE_ENV: ${self:custom.secrets.NODE_ENV}
+    DOMAIN: ${self:custom.secrets.DOMAIN}
+    SERVICE_NAME: ${self:service}
+
+functions:
+  clients_test:
+    handler: src/get.test
+    events:
+      - http:
+          path: clients/test
+          method: get
+          cors: true
+          authorizer: aws_iam
+  clients_updby_aws_cognito_id:
+    handler: src/update.aws_cognito_id
+    events:
+      - http:
+          path: clients/update/aws_cognito_id/{aws_cognito_id}
+          method: put
+          cors: true
+          authorizer: aws_iam
+  clients_update_by_id:
+    handler: src/update.id
+    events:
+      - http:
+          path: update/id/{id}
+          method: put
+          cors: true
+          authorizer: aws_iam
+  clients_list_not_deleted:
+    handler: src/get.list_not_deleted
+    events:
+      - http:
+          path: clients/get-list-not-deleted
+          method: get
+          cors: true
+          authorizer: aws_iam
+  clients_get_all:
+    handler: src/get.all
+    events:
+      - http:
+          path: clients/get-all
+          method: get
+          cors: true
+          authorizer: aws_iam
+  clients_get_by_id:
+    handler: src/get.by_id
+    events:
+      - http:
+          path: clients/get/id/{id}
+          method: get
+          cors: true
+          authorizer: aws_iam
+  clients_todo_client_id:
+    handler: src/get.list_todo_client_by_client_id
+    events:
+      - http:
+          path: get-todo/list/{client_id}
+          method: get
+          cors: true
+          authorizer: aws_iam
+  clients_get_by_aws_id:
+    handler: src/get.by_aws_id
+    events:
+      - http:
+          path: get/aws_cognito_id/{aws_cognito_id}
+          method: get
+          cors: true
+          authorizer: aws_iam
+  clients_update_by_aws_id:
+    handler: src/update.by_aws_id
+    events:
+      - http:
+          path: update/aws_cognito_id/{aws_cognito_id}
+          method: put
+          cors: true
+          authorizer: aws_iam
+  check_client_can_login:
+    handler: src/get.check_client_can_login
+    events:
+      - http:
+          path: get/login-check/{aws_cognito_id}
+          method: get
+          cors: true
+          authorizer: aws_iam
+  get_client_from_mob:
+    handler: src/get.for_mob
+    events:
+      - http:
+          path: get/for_mob
+          method: get
+          cors: true
+          authorizer: aws_iam

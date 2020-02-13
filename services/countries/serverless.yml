@@ -1,0 +1,94 @@
+# NOTE: update this with your service name
+service: rfx-webapp-cp-api-countries
+
+# Use the serverless-webpack plugin to transpile ES6
+plugins:
+  - serverless-webpack
+  - serverless-offline
+  - serverless-domain-manager
+
+# serverless-webpack configuration
+# Enable auto-packing of external modules
+custom:
+  webpack:
+    webpackConfig: ./webpack.config.js
+    includeModules: true
+  secrets: ${file(secrets.json)}
+  customDomain:
+    domainName: 'webcp-api.remitfx.io' # Change this to your domain.
+    basePath: 'countries' # This will be prefixed to all routes
+    stage: ${self:provider.stage}
+    createRoute53Record: true
+
+provider:
+  name: aws
+  runtime: nodejs8.10
+  stage: dev
+  region: ap-southeast-1
+  profile: ctin
+  # To load environment variables externally
+  # rename env.example to env.yml and uncomment
+  # the following line. Also, make sure to not
+  # commit your env.yml.
+  #
+  #environment: ${file(env.yml):${self:provider.stage}}
+  environment:
+    NODE_ENV: ${self:custom.secrets.NODE_ENV}
+    DOMAIN: ${self:custom.secrets.DOMAIN}
+    SERVICE_NAME: ${self:service}
+
+functions:
+  # --------------
+  # Countries API
+  # --------------
+  countries_get_all:
+    handler: src/get.all
+    events:
+      - http:
+          path: countries/get-all
+          method: get
+          cors: true
+          authorizer: aws_iam
+
+    countries_get_all_not_deleted:
+      handler: src/get.list_not_deleted
+      events:
+        - http:
+            path: countries/get-not-deleted
+            method: get
+            cors: true
+            authorizer: aws_iam
+
+  countries_get:
+    handler: src/get.id
+    events:
+      - http:
+          path: countries/get/{id}
+          method: get
+          cors: true
+          authorizer: aws_iam
+
+  countries_create_in_database:
+    handler: src/create.in_database
+    events:
+      - http:
+          path: countries/create/in-database
+          method: post
+          cors: true
+          authorizer: aws_iam
+  countries_update:
+    handler: src/update.id
+    events:
+      - http:
+          path: countries/update/id/{id}
+          method: put
+          cors: true
+          authorizer: aws_iam
+  countries_delete:
+    handler: src/delete.id
+    events:
+      - http:
+          path: countries/delete/country_id/{country_id}
+          method: put
+          cors: true
+          authorizer: aws_iam

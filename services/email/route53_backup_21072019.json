@@ -1,0 +1,339 @@
+{
+    "ResourceRecordSets": [
+        {
+            "Name": "remitfx.io.",
+            "Type": "A",
+            "AliasTarget": {
+                "HostedZoneId": "Z2FDTNDATAQYW2",
+                "DNSName": "d3mexua5zc8r0q.cloudfront.net.",
+                "EvaluateTargetHealth": false
+            }
+        },
+        {
+            "Name": "remitfx.io.",
+            "Type": "AAAA",
+            "AliasTarget": {
+                "HostedZoneId": "Z2FDTNDATAQYW2",
+                "DNSName": "d3mexua5zc8r0q.cloudfront.net.",
+                "EvaluateTargetHealth": false
+            }
+        },
+        {
+            "Name": "remitfx.io.",
+            "Type": "MX",
+            "TTL": 300,
+            "ResourceRecords": [
+                {
+                    "Value": "0 remitfx-io.mail.protection.outlook.com."
+                }
+            ]
+        },
+        {
+            "Name": "remitfx.io.",
+            "Type": "NS",
+            "TTL": 172800,
+            "ResourceRecords": [
+                {
+                    "Value": "ns-1937.awsdns-50.co.uk."
+                },
+                {
+                    "Value": "ns-1438.awsdns-51.org."
+                },
+                {
+                    "Value": "ns-732.awsdns-27.net."
+                },
+                {
+                    "Value": "ns-320.awsdns-40.com."
+                }
+            ]
+        },
+        {
+            "Name": "remitfx.io.",
+            "Type": "SOA",
+            "TTL": 900,
+            "ResourceRecords": [
+                {
+                    "Value": "ns-1937.awsdns-50.co.uk. awsdns-hostmaster.amazon.com. 1 7200 900 1209600 86400"
+                }
+            ]
+        },
+        {
+            "Name": "remitfx.io.",
+            "Type": "TXT",
+            "TTL": 300,
+            "ResourceRecords": [
+                {
+                    "Value": "\"MS=ms51047411\""
+                },
+                {
+                    "Value": "\"v=spf1 include:spf.protection.outlook.com -all\""
+                }
+            ]
+        },
+        {
+            "Name": "_4aef70e3004bf4ccf3dc3f3cb1d50df7.remitfx.io.",
+            "Type": "CNAME",
+            "TTL": 300,
+            "ResourceRecords": [
+                {
+                    "Value": "_4885331d678635963d32a3cb085f57ef.duyqrilejt.acm-validations.aws."
+                }
+            ]
+        },
+        {
+            "Name": "_5e46042e1783faec933eade6def154c8.auth-app.remitfx.io.",
+            "Type": "CNAME",
+            "TTL": 300,
+            "ResourceRecords": [
+                {
+                    "Value": "_b679c35c018ba43bdb41f68b51d25bb3.duyqrilejt.acm-validations.aws."
+                }
+            ]
+        },
+        {
+            "Name": "auth-cp.remitfx.io.",
+            "Type": "A",
+            "AliasTarget": {
+                "HostedZoneId": "Z2FDTNDATAQYW2",
+                "DNSName": "dqgj5ijo0p9wc.cloudfront.net.",
+                "EvaluateTargetHealth": false
+            }
+        },
+        {
+            "Name": "_f9fa83fb7f66c1b3636dcef50ec9b53a.auth-cp.remitfx.io.",
+            "Type": "CNAME",
+            "TTL": 300,
+            "ResourceRecords": [
+                {
+                    "Value": "_8054326bc65a7f78756667432cc3613c.duyqrilejt.acm-validations.aws."
+                }
+            ]
+        },
+        {
+            "Name": "autodiscover.remitfx.io.",
+            "Type": "CNAME",
+            "TTL": 300,
+            "ResourceRecords": [
+                {
+                    "Value": "autodiscover.outlook.com."
+                }
+            ]
+        },
+        {
+            "Name": "clientsupport.remitfx.io.",
+            "Type": "CNAME",
+            "TTL": 300,
+            "ResourceRecords": [
+                {
+                    "Value": "desk.cs.zohohost.com"
+                }
+            ]
+        },
+        {
+            "Name": "staffsupport.remitfx.io.",
+            "Type": "CNAME",
+            "TTL": 300,
+            "ResourceRecords": [
+                {
+                    "Value": "desk.cs.zohohost.com"
+                }
+            ]
+        },
+        {
+            "Name": "webapp-api.remitfx.io.",
+            "Type": "A",
+            "AliasTarget": {
+                "HostedZoneId": "Z2FDTNDATAQYW2",
+                "DNSName": "d1ij7mjjbywy5m.cloudfront.net.",
+                "EvaluateTargetHealth": false
+            }
+        },
+        {
+            "Name": "webapp-api.remitfx.io.",
+            "Type": "AAAA",
+            "AliasTarget": {
+                "HostedZoneId": "Z2FDTNDATAQYW2",
+                "DNSName": "d1ij7mjjbywy5m.cloudfront.net.",
+                "EvaluateTargetHealth": false
+            }
+        },
+        {
+            "Name": "webapp.remitfx.io.",
+            "Type": "A",
+            "AliasTarget": {
+                "HostedZoneId": "Z2FDTNDATAQYW2",
+                "DNSName": "d3vmzmub30wksc.cloudfront.net.",
+                "EvaluateTargetHealth": false
+            }
+        },
+        {
+            "Name": "webapp.remitfx.io.",
+            "Type": "AAAA",
+            "AliasTarget": {
+                "HostedZoneId": "Z2FDTNDATAQYW2",
+                "DNSName": "d3vmzmub30wksc.cloudfront.net.",
+                "EvaluateTargetHealth": false
+            }
+        },
+        {
+            "Name": "_4fa1624e641ca0d9543778b865c5e7df.webapp.remitfx.io.",
+            "Type": "CNAME",
+            "TTL": 300,
+            "ResourceRecords": [
+                {
+                    "Value": "_07063a0fc7caad6cff9a632b085d3ac1.duyqrilejt.acm-validations.aws."
+                }
+            ]
+        },
+        {
+            "Name": "www.webapp.remitfx.io.",
+            "Type": "A",
+            "AliasTarget": {
+                "HostedZoneId": "Z2FDTNDATAQYW2",
+                "DNSName": "d2qr0n542zhlrc.cloudfront.net.",
+                "EvaluateTargetHealth": false
+            }
+        },
+        {
+            "Name": "www.webapp.remitfx.io.",
+            "Type": "AAAA",
+            "AliasTarget": {
+                "HostedZoneId": "Z2FDTNDATAQYW2",
+                "DNSName": "d2qr0n542zhlrc.cloudfront.net.",
+                "EvaluateTargetHealth": false
+            }
+        },
+        {
+            "Name": "_d929ebb1d5adf3485c4f451c9c302840.www.webapp.remitfx.io.",
+            "Type": "CNAME",
+            "TTL": 300,
+            "ResourceRecords": [
+                {
+                    "Value": "_57df7ccada96aac7ffe4bda02d7475fa.duyqrilejt.acm-validations.aws."
+                }
+            ]
+        },
+        {
+            "Name": "webcp-api.remitfx.io.",
+            "Type": "A",
+            "AliasTarget": {
+                "HostedZoneId": "Z2FDTNDATAQYW2",
+                "DNSName": "dqf8wzl1m7xv4.cloudfront.net.",
+                "EvaluateTargetHealth": false
+            }
+        },
+        {
+            "Name": "webcp-api.remitfx.io.",
+            "Type": "AAAA",
+            "AliasTarget": {
+                "HostedZoneId": "Z2FDTNDATAQYW2",
+                "DNSName": "dqf8wzl1m7xv4.cloudfront.net.",
+                "EvaluateTargetHealth": false
+            }
+        },
+        {
+            "Name": "_4f7536580892acfa8ea6d5af6a302458.webcp-api.remitfx.io.",
+            "Type": "CNAME",
+            "TTL": 300,
+            "ResourceRecords": [
+                {
+                    "Value": "_d53b0217720d7b30fb52342f26a02b2e.duyqrilejt.acm-validations.aws."
+                }
+            ]
+        },
+        {
+            "Name": "webcp.remitfx.io.",
+            "Type": "A",
+            "AliasTarget": {
+                "HostedZoneId": "Z2FDTNDATAQYW2",
+                "DNSName": "d2jvpplsdgeygk.cloudfront.net.",
+                "EvaluateTargetHealth": false
+            }
+        },
+        {
+            "Name": "webcp.remitfx.io.",
+            "Type": "AAAA",
+            "AliasTarget": {
+                "HostedZoneId": "Z2FDTNDATAQYW2",
+                "DNSName": "d2jvpplsdgeygk.cloudfront.net.",
+                "EvaluateTargetHealth": false
+            }
+        },
+        {
+            "Name": "_a79a42ea5eb56700fe5c0b3e6c5f054c.webcp.remitfx.io.",
+            "Type": "CNAME",
+            "TTL": 300,
+            "ResourceRecords": [
+                {
+                    "Value": "_810b6ff4f3eacf7a2962e220f661d0fd.duyqrilejt.acm-validations.aws."
+                }
+            ]
+        },
+        {
+            "Name": "www.webcp.remitfx.io.",
+            "Type": "A",
+            "AliasTarget": {
+                "HostedZoneId": "Z2FDTNDATAQYW2",
+                "DNSName": "d2fz54vmoqs1rr.cloudfront.net.",
+                "EvaluateTargetHealth": false
+            }
+        },
+        {
+            "Name": "www.webcp.remitfx.io.",
+            "Type": "AAAA",
+            "AliasTarget": {
+                "HostedZoneId": "Z2FDTNDATAQYW2",
+                "DNSName": "d2fz54vmoqs1rr.cloudfront.net.",
+                "EvaluateTargetHealth": false
+            }
+        },
+        {
+            "Name": "_36daa6ea60daef2035ae01889bb1e96f.www.webcp.remitfx.io.",
+            "Type": "CNAME",
+            "TTL": 300,
+            "ResourceRecords": [
+                {
+                    "Value": "_44cb5987bc6f0e1cbf57f856136725a0.duyqrilejt.acm-validations.aws."
+                }
+            ]
+        },
+        {
+            "Name": "www.remitfx.io.",
+            "Type": "A",
+            "AliasTarget": {
+                "HostedZoneId": "Z2FDTNDATAQYW2",
+                "DNSName": "d2n3ofi1s5vgny.cloudfront.net.",
+                "EvaluateTargetHealth": false
+            }
+        },
+        {
+            "Name": "www.remitfx.io.",
+            "Type": "AAAA",
+            "AliasTarget": {
+                "HostedZoneId": "Z2FDTNDATAQYW2",
+                "DNSName": "d2n3ofi1s5vgny.cloudfront.net.",
+                "EvaluateTargetHealth": false
+            }
+        },
+        {
+            "Name": "_b4f991cdd6271454efeebc6ed2be9ce5.www.remitfx.io.",
+            "Type": "CNAME",
+            "TTL": 300,
+            "ResourceRecords": [
+                {
+                    "Value": "_c1fa403cf9b788d9b704bd91c3a658af.duyqrilejt.acm-validations.aws."
+                }
+            ]
+        },
+        {
+            "Name": "zdfb93ce1303c47313c2c5e839227de84d.remitfx.io.",
+            "Type": "CNAME",
+            "TTL": 300,
+            "ResourceRecords": [
+                {
+                    "Value": "desk.cs.zohohost.com"
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,89 @@
+# NOTE: update this with your service name
+service: rfx-webapp-cp-api-app
+
+# Use the serverless-webpack plugin to transpile ES6
+plugins:
+  - serverless-webpack
+  - serverless-offline
+  - serverless-domain-manager
+
+# serverless-webpack configuration
+# Enable auto-packing of external modules
+custom:
+  webpack:
+    webpackConfig: ./webpack.config.js
+    includeModules: true
+  secrets: ${file(secrets.json)}
+  customDomain:
+    domainName: 'webcp-api.remitfx.io' # Change this to your domain.
+    basePath: 'app' # This will be prefixed to all routes
+    stage: ${self:provider.stage}
+    createRoute53Record: true
+
+provider:
+  name: aws
+  runtime: nodejs8.10
+  stage: dev
+  region: ap-southeast-1
+  profile: ctin
+  # To load environment variables externally
+  # rename env.example to env.yml and uncomment
+  # the following line. Also, make sure to not
+  # commit your env.yml.
+  #
+  #environment: ${file(env.yml):${self:provider.stage}}
+  environment:
+    NODE_ENV: ${self:custom.secrets.NODE_ENV}
+    DOMAIN: ${self:custom.secrets.DOMAIN}
+    SERVICE_NAME: ${self:service}
+
+functions:
+
+#  test:
+#    handler: src/users/get_user.test
+#    events:
+#      - http:
+#         path: test
+#         method: get
+#         cors: true
+  test_auth:
+    handler: src/users/get_user.test_auth
+    events:
+      - http:
+         path: test_auth/{client_id}
+         method: get
+         cors: true
+         authorizer: aws_iam
+
+  users_create:
+    handler: src/users/create.main
+    events:
+      - http:
+          path: users/create
+          method: post
+          cors: true
+        #  authorizer: aws_iam
+  users_get_user_by_id:
+    handler: src/users/get_user.by_id
+    events:
+      - http:
+          path: users/get-by-id/{user_id}
+          method: get
+          cors: true
+          authorizer: aws_iam
+  users_get_user_by_email:
+    handler: src/users/get_user.by_email
+    events:
+      - http:
+          path: users/get-by-email/{email}
+          method: get
+          cors: true
+          authorizer: aws_iam
+  # users_update:
+  #   handler: src/users/update.main
+  #   events:
+  #     - http:
+  #         path: users/update/{user_id}
+  #         method: put
+  #         cors: true
+  #         authorizer: aws_iam

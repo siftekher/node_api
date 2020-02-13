@@ -1,0 +1,88 @@
+# NOTE: update this with your service name
+service: rfx-webapp-cp-api-beneficiaries
+
+# Use the serverless-webpack plugin to transpile ES6
+plugins:
+  - serverless-webpack
+  - serverless-offline
+  - serverless-domain-manager
+
+# serverless-webpack configuration
+# Enable auto-packing of external modules
+custom:
+  webpack:
+    webpackConfig: ./webpack.config.js
+    includeModules: true
+  secrets: ${file(secrets.json)}
+  customDomain:
+    domainName: 'webcp-api.remitfx.io' # Change this to your domain.
+    basePath: 'beneficiaries' # This will be prefixed to all routes
+    stage: ${self:provider.stage}
+    createRoute53Record: true
+
+provider:
+  name: aws
+  runtime: nodejs8.10
+  stage: dev
+  region: ap-southeast-1
+  profile: ctin
+  # To load environment variables externally
+  # rename env.example to env.yml and uncomment
+  # the following line. Also, make sure to not
+  # commit your env.yml.
+  #
+  #environment: ${file(env.yml):${self:provider.stage}}
+  environment:
+    NODE_ENV: ${self:custom.secrets.NODE_ENV}
+    DOMAIN: ${self:custom.secrets.DOMAIN}
+    SERVICE_NAME: ${self:service}
+
+functions:
+  beneficiaries_get_all:
+    handler: src/get.all
+    events:
+      - http:
+          path: get-all
+          method: get
+          cors: true
+          authorizer: aws_iam
+  beneficiaries_get_by_id:
+    handler: src/get.by_id
+    events:
+      - http:
+          path: get/id/{id}
+          method: get
+          cors: true
+          authorizer: aws_iam
+  beneficiaries_get_list:
+    handler: src/get.list
+    events:
+      - http:
+          path: beneficiaries/get
+          method: get
+          cors: true
+          authorizer: aws_iam
+  beneficiaries_geteb:
+    handler: src/get.id
+    events:
+      - http:
+          path: beneficiaries/getb/{id}
+          method: get
+          cors: true
+          authorizer: aws_iam
+  beneficiaries_update:
+    handler: src/update.id
+    events:
+      - http:
+          path: beneficiaries/update/id/{id}
+          method: put
+          cors: true
+          authorizer: aws_iam
+  beneficiaries_create:
+    handler: src/create.in_database
+    events:
+      - http:
+          path: beneficiaries/create/in-database
+          method: post
+          cors: true
+          authorizer: aws_iam
